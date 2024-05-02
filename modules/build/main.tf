@@ -131,5 +131,5 @@ resource "aws_ssm_parameter" "cloudwatch" {
 }
 
 data "local_file" "AmazonCloudWatchConfig" {
-  filename = "AmazonCloudWatchConfig.json"
+  filename = "${path.module}/AmazonCloudWatchConfig.json"
 }
