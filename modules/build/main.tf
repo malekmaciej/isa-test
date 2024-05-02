@@ -122,3 +122,14 @@ resource "aws_ssm_document" "ami_build" {
     efs_id            = var.efs_id
   })
 }
+
+# SSM Parameter Store - CloudWatch Agent Configuration
+resource "aws_ssm_parameter" "cloudwatch" {
+  name  = "AmazonCloudWatch-${local.project_name}"
+  type  = "String"
+  value = data.local_file.AmazonCloudWatchConfig.content
+}
+
+data "local_file" "AmazonCloudWatchConfig" {
+  filename = "AmazonCloudWatchConfig.json"
+}
