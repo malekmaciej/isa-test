@@ -1,3 +1,10 @@
+# Build infrastructure for Jenkins AMI
+
+Task
+
+-        - amazon-linux-extras install -y java-openjdk11
++        - yum install -y java-21-amazon-corretto-headless
+
 ## Requirements
 
 No requirements.
