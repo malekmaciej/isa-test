@@ -1,13 +1,13 @@
 variable "domain_name" {
   type        = string
   description = "A domain name for which the certificate should be issued"
-  default = "maciej.aws.enterpriseme.academy"
+  default     = "maciej.aws.enterpriseme.academy"
 }
 
 variable "zone_id" {
   type        = string
   description = "The ID of the hosted zone to contain this record. Required when validating via Route53"
-  default = "Z0471614CY2S84LBMTIH"
+  default     = "Z0471614CY2S84LBMTIH"
 }
 
 #######################
