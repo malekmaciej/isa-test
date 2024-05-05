@@ -4,6 +4,38 @@
 
 ![Jenkins - diagram architektury](jenkins.png)
 
+- [Plan webinaru ISA](#plan-webinaru-isa)
+- [Budujemy Serwer Jenkinsa](#budujemy-serwer-jenkinsa)
+  - [CICD - GitHub Actions](#cicd---github-actions)
+  - [Siec](#siec)
+    - [Konfiguracja VPC](#konfiguracja-vpc)
+    - [Subnets](#subnets)
+    - [Internet Gateway](#internet-gateway)
+    - [NAT Gateway](#nat-gateway)
+    - [Ruting](#ruting)
+    - [Security Group - public - dostęp z zewnatrz](#security-group---public---dostęp-z-zewnatrz)
+    - [Security Group - private - dostęp pomiedzy EC2 a Load Balancerem](#security-group---private---dostęp-pomiedzy-ec2-a-load-balancerem)
+  - [Konfiguracja IAM Role dla serwera Jenkins](#konfiguracja-iam-role-dla-serwera-jenkins)
+  - [Konfiguracja EFS](#konfiguracja-efs)
+    - [Nowa security group dla EFS](#nowa-security-group-dla-efs)
+    - [Utworzenie dysku EFS](#utworzenie-dysku-efs)
+  - [Konfiguracja Jenkinsa](#konfiguracja-jenkinsa)
+  - [Serwer EC2](#serwer-ec2)
+  - [Konfiguracja Amazon Linux 2](#konfiguracja-amazon-linux-2)
+    - [Konfiguracja Amazon CloudWatch Agent](#konfiguracja-amazon-cloudwatch-agent)
+  - [Konfiguracja Application Load Balancer'a](#konfiguracja-application-load-balancera)
+    - [Utworzenie Target Group](#utworzenie-target-group)
+    - [Utworzenie Application Load Balancer'a](#utworzenie-application-load-balancera)
+    - [Konfiguracja HTTPS dla Application Load Balancera](#konfiguracja-https-dla-application-load-balancera)
+      - [Utworzenie certyfikatu SSL w AWS Certificate Manager](#utworzenie-certyfikatu-ssl-w-aws-certificate-manager)
+      - [Zarejestrowac record w domenie aws.enterpriseme.academy](#zarejestrowac-record-w-domenie-awsenterprisemeacademy)
+      - [Konfiguracja HTTPS na Load Balancerze](#konfiguracja-https-na-load-balancerze)
+  - [Konfiguracja AutoScaling Group](#konfiguracja-autoscaling-group)
+    - [Budowa AMI](#budowa-ami)
+    - [Launch Template](#launch-template)
+    - [Auto Scaling Groups](#auto-scaling-groups)
+
+
 ## CICD - GitHub Actions
 
 - Utworzenie dedykowanego repozytorium GitHub

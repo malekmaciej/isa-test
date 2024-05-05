@@ -2,7 +2,7 @@
 variable "image_name_prefix" {
   type        = string
   description = "Prefix of application image"
-  default     = "isa-"
+  default     = "isa"
 }
 
 module "build" {
