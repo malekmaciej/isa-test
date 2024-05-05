@@ -233,7 +233,7 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 - Health checks:
   - protocol `HTTP`
   - path `/login`
-  - success codes `200, 202`
+  - success codes `200-399`
 - Rejestracja serwera EC2 do TG
 
 ### Utworzenie Application Load Balancer'a
