@@ -96,13 +96,18 @@ resource "aws_security_group" "instance_build_sg" {
   name_prefix = "${local.project_name}_build_sg_"
   description = "For Image Building-${local.project_name}"
   vpc_id      = var.vpc_id
-
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.project_name}-build"
+    }
+  )
 }
 
 resource "aws_ssm_document" "ami_build" {
