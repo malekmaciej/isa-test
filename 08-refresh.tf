@@ -50,3 +50,7 @@ resource "aws_cloudwatch_event_target" "scan_ami_lambda_function" {
   rule = aws_cloudwatch_event_rule.trigger_lambda.name
   arn  = module.lambda_function.lambda_function_arn
 }
+
+resource "random_id" "hex" {
+  byte_length = 8
+}
