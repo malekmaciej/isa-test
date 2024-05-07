@@ -23,6 +23,6 @@ module "lambda_function" {
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
-  role = module.lambda_function.lambda_role_name
+  role       = module.lambda_function.lambda_role_name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
 }
