@@ -101,7 +101,6 @@ mainSteps:
         - systemctl start jenkins
         - yum install -y amazon-cloudwatch-agent
         - /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:AmazonCloudWatch-{{ projectName }}
-        - cat /var/lib/jenkins/secrets/initialAdminPassword
       CloudWatchOutputConfig:
         CloudWatchLogGroupName: "{{ LogGroupName }}"
         CloudWatchOutputEnabled: true
@@ -120,17 +119,7 @@ mainSteps:
         - set -e
         - yum clean all
         - rm -rf /var/cache/yum
-        - cat /dev/null > /var/log/yum.log
-        - cat /dev/null > /var/log/amazon/ssm/amazon-ssm-agent.log
-        - cat /dev/null > /var/log/amazon/ssm/errors.log
         - cat /dev/null > /var/log/messages
-        - cat /dev/null > /var/log/boot.log
-        - cat /dev/null > /var/log/cloud-init.log
-        - cat /dev/null > /var/log/cloud-init-output.log
-        - cat /dev/null > /var/log/cron
-        - cat /dev/null > /var/log/dmesg
-        - cat /dev/null > /var/log/secure
-        - cat /dev/null > /var/log/audit/audit.log
       CloudWatchOutputConfig:
         CloudWatchLogGroupName: "{{ LogGroupName }}"
         CloudWatchOutputEnabled: true
