@@ -29,7 +29,7 @@ variable "build_ami_userdata" {
 
 variable "build_cycle_cron" {
   type        = string
-  default     = "rate(7 days)"
+  default     = "cron(0 8 * * ? *)"
   description = "(Optional) Cron expression for the time between the cycle triggers of the SSM build pipeline. https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html"
 }
 
