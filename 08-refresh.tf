@@ -23,7 +23,7 @@ module "lambda_function" {
   }
   source_path = "./src/lambda_code_refresh"
   allowed_triggers = {
-    ScanAmiRule = {
+    TriggerLambda = {
       principal  = "events.amazonaws.com"
       source_arn = aws_cloudwatch_event_rule.trigger_lambda.arn
     }
@@ -46,7 +46,7 @@ resource "aws_cloudwatch_event_rule" "trigger_lambda" {
   schedule_expression = "cron(0 20 * * ? *)"
 }
 
-resource "aws_cloudwatch_event_target" "scan_ami_lambda_function" {
+resource "aws_cloudwatch_event_target" "trigger_lambda_function" {
   rule = aws_cloudwatch_event_rule.trigger_lambda.name
   arn  = module.lambda_function.lambda_function_arn
 }
