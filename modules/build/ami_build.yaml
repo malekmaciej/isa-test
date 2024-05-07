@@ -171,3 +171,5 @@ mainSteps:
       InstanceIds:
       - "{{ startInstances.InstanceIds }}"
       DesiredState: terminated
+outputs:
+  - "createImage.ImageId"
