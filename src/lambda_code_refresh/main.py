@@ -1,12 +1,12 @@
 import json
 import boto3
+import os
 
 def lambda_handler(event, context):
-    print(event)
-    
-    launch_template_id = event['LaunchTemplateId']
-    owner = event['Owner']
-    image_prefix = event['ImagePrefix']
+
+    launch_template_id = os.environ['LaunchTemplateId']
+    owner = os.environ['Owner']
+    image_prefix = f"os.environ['ImagePrefix']-*"
     
     ec2 = boto3.client("ec2")
     filters = [
@@ -17,12 +17,12 @@ def lambda_handler(event, context):
     images = ec2.describe_images(Owners=[owner], Filters=filters)
     images = sorted(images['Images'], key=lambda x : x['CreationDate'])
     images.reverse()
-    print(images[0]['ImageId'])
+    print(f"ImageId: images[0]['ImageId']")
     response = ec2.describe_launch_templates(
         LaunchTemplateIds=[launch_template_id]
         )
     latest_version_lt = response['LaunchTemplates'][0]['LatestVersionNumber']
-    print(latest_version_lt)
+    print(f"Launch Template latest version: latest_version_lt")
     lt = ec2.create_launch_template_version(
         LaunchTemplateData={
             'ImageId': images[0]['ImageId']

@@ -6,8 +6,9 @@ module "lambda_function" {
 
   function_name = "${var.name}-ami-refresh"
   description   = "Function to refresh ami id in Launch Template"
-  handler       = "index.lambda_handler"
+  handler       = "main.lambda_handler"
   runtime       = "python3.12"
+  timeout       = 30
   environment_variables = {
     LaunchTemplateId = aws_launch_template.template.id
     Owner            = data.aws_caller_identity.current.account_id
@@ -19,4 +20,9 @@ module "lambda_function" {
     {
       Name = "${var.name}-ami-refresh"
   })
+}
+
+resource "aws_iam_role_policy_attachment" "this" {
+  role = module.lambda_function.lambda_role_name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
 }
