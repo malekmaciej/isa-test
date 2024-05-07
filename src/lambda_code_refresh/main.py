@@ -20,12 +20,12 @@ def lambda_handler(event, context):
     images = ec2.describe_images(Owners=[owner], Filters=filters)
     images = sorted(images['Images'], key=lambda x : x['CreationDate'])
     images.reverse()
-    logger.info(f"ImageId: images[0]['ImageId']")
+    logger.info(f"ImageId: {images[0]['ImageId']}")
     response = ec2.describe_launch_templates(
         LaunchTemplateIds=[launch_template_id]
         )
     latest_version_lt = response['LaunchTemplates'][0]['LatestVersionNumber']
-    logger.info(f"Launch Template latest version: latest_version_lt")
+    logger.info(f"Launch Template latest version: {latest_version_lt}")
     lt = ec2.create_launch_template_version(
         LaunchTemplateData={
             'ImageId': images[0]['ImageId']

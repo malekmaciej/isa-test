@@ -15,11 +15,13 @@ module "lambda_function" {
   handler       = "main.lambda_handler"
   runtime       = "python3.12"
   timeout       = 30
+  publish       = true
   layers        = ["arn:aws:lambda:${local.region_name}:017000801446:layer:AWSLambdaPowertoolsPythonV2:69"]
   environment_variables = {
-    LaunchTemplateId = aws_launch_template.template.id
-    Owner            = data.aws_caller_identity.current.account_id
-    ImagePrefix      = var.image_name_prefix
+    LaunchTemplateId        = aws_launch_template.template.id
+    Owner                   = data.aws_caller_identity.current.account_id
+    ImagePrefix             = var.image_name_prefix
+    POWERTOOLS_SERVICE_NAME = local.lambda_name
   }
   source_path = "./src/lambda_code_refresh"
   allowed_triggers = {
